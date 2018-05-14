@@ -8,7 +8,7 @@ public class KeyManager implements KeyListener {
     public boolean up, down, left, right;
 
     public KeyManager(){
-        keys = new boolean[5];
+        keys = new boolean[256];
     }
 
     public void update(){
@@ -37,22 +37,6 @@ public class KeyManager implements KeyListener {
 
     public boolean[] getKeys() {
         return keys;
-    }
-
-    public boolean isUp() {
-        return up;
-    }
-
-    public boolean isDown() {
-        return down;
-    }
-
-    public boolean isLeft() {
-        return left;
-    }
-
-    public boolean isRight() {
-        return right;
     }
 
 }

@@ -11,8 +11,10 @@ public class Board extends JFrame{
     Image dbImage;
     Graphics dbg;
 
-    Food f = new Food(100, 100,100 ,100);
-    Snake s = new Snake(500,100, 100, 10);
+    Food f = new Food(100, 100,10 ,10);
+    Snake s = new Snake(500,100, 10, 10);
+    MainLoop m;
+
 
     //Screen size
     int WIDTH = 720;
@@ -20,8 +22,6 @@ public class Board extends JFrame{
 
     //Dimension of the ScreenWidth * ScreenHeight
     Dimension screenSize = new Dimension(WIDTH, HEIGHT);
-
-    boolean running = false;
 
     //Constructor
     public Board() {
@@ -31,26 +31,19 @@ public class Board extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.setBackground(Color.DARK_GRAY);
+        this.addKeyListener(s.keyManager);
+        m = new MainLoop(s, f, this, s.keyManager);
 
         //Creating and starting threads
         Thread food = new Thread(f);
         Thread player = new Thread(s);
+        Thread mainLoop = new Thread(m);
+
+        mainLoop.start();
         food.start();
-       // player.start();
+        player.start();
 
-        running = true;
 
-        //Main loop
-        long lastUpdate = System.nanoTime();
-        int fps = 60;
-        long dt = 1000000000/fps;
-
-        while(running) {
-            if (System.nanoTime() - lastUpdate > dt){
-                lastUpdate = System.nanoTime();
-                draw();
-            }
-        }
     }
         public void draw(){
             dbImage = createImage(getWidth(), getHeight());
