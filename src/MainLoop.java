@@ -1,4 +1,7 @@
-
+/* Benjamin Bylund
+   2018-**-**
+   Ah det ska vara ett spel men det är vad det är.
+*/
 
 public class MainLoop implements Runnable {
 
@@ -26,7 +29,7 @@ public class MainLoop implements Runnable {
     }
 
     private void checkFood(Snake player, Food food){
-        /*if (player.intersects(food)) {
+        /* if (player.intersects(food)) {
             System.out.println("RÖR INTE MATEN");
         } */
     }
